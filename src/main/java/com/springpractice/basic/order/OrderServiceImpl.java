@@ -2,13 +2,18 @@ package com.springpractice.basic.order;
 
 import com.springpractice.basic.member.Member;
 import com.springpractice.basic.member.MemberRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class OrderServiceImpl implements OrderService {
 
     private final MemberRepository memberRepository;
     private final DiscountPolicy discountPolicy;
 
-    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+    @Autowired
+    public OrderServiceImpl(MemberRepository memberRepository,
+                            DiscountPolicy discountPolicy) {
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
     }
@@ -19,6 +24,5 @@ public class OrderServiceImpl implements OrderService {
         int discountPrice = discountPolicy.discount(findMember, itemPrice);
         return new Order(findMember.getId(), itemName, itemPrice, discountPrice);
     }
-
 
 }
