@@ -4,7 +4,6 @@ import com.springpractice.basic.AppConfig;
 import com.springpractice.basic.member.Grade;
 import com.springpractice.basic.member.Member;
 import com.springpractice.basic.member.MemberService;
-import com.springpractice.basic.member.MemberServiceImpl;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
