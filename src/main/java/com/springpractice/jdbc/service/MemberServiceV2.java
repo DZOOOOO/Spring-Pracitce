@@ -36,7 +36,6 @@ public class MemberServiceV2 {
         Member toMember = memberRepository.findById(con, toId);
 
         memberRepository.update(con, fromId, fromMember.getMoney() - money);
-        validation(toMember);
         memberRepository.update(con, toId, toMember.getMoney() + money);
     }
 
