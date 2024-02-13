@@ -1,4 +1,4 @@
-package com.springpractice.jdbc.connection;
+package com.springpractice.connection;
 
 import com.zaxxer.hikari.HikariDataSource;
 import lombok.extern.slf4j.Slf4j;
@@ -24,13 +24,15 @@ public class ConnectionTest {
     }
 
     @Test
-    void dataDriverManager() throws SQLException {
-        DriverManagerDataSource dataSource = new DriverManagerDataSource(URL, USERNAME, PASSWORD);
+    void dataSourceDriverManger() throws SQLException {
+        // DriverManagerSource - 항상 새로운 커넥션을 획득
+        DataSource dataSource = new DriverManagerDataSource(URL, USERNAME, PASSWORD);
         useDataSource(dataSource);
     }
 
     @Test
     void dataSourceConnectionPool() throws SQLException, InterruptedException {
+        // 커넥션 풀
         HikariDataSource dataSource = new HikariDataSource();
         dataSource.setJdbcUrl(URL);
         dataSource.setUsername(USERNAME);
@@ -39,7 +41,7 @@ public class ConnectionTest {
         dataSource.setPoolName("MyPool");
 
         useDataSource(dataSource);
-        Thread.sleep(5000);
+        Thread.sleep(1000);
     }
 
     private void useDataSource(DataSource dataSource) throws SQLException {
